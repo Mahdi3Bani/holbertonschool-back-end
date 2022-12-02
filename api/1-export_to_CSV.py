@@ -12,12 +12,11 @@ if __name__ == '__main__':
         "https://jsonplaceholder.typicode.com/todos",
         params=payload).json()
 
-    nameFile = str(eval(sys.argv[1])) + ".csv"
+    f = open(str(eval(identity)) + ".csv", "x")
 
-    f = open(nameFile, "x")
     for task in to_do_list:
-        s = ('"' + str(user.get("id")) + '","' + str(
-            user.get("username")) + '","' +
-            str(task.get("completed")) + '","' +
-            str(task.get("title")) + '"' + "\n")
+        s = '"' + str(user.get("id")) + '","' + str(
+            user.get("username")) + '","' + str(
+                task.get("completed")) + '","' + str(
+                    task.get("title")) + '"\n'
         f.write(s)
