@@ -8,7 +8,8 @@ if __name__ == '__main__':
     user = requests.get(
         "https://jsonplaceholder.typicode.com/user/{}".format(identity)).json()
     to_do_list = requests.get(
-        "https://jsonplaceholder.typicode.com/user/todos", params=payload).json()
+        "https://jsonplaceholder.typicode.com/user/todos",
+        params=payload).json()
 
     l = []
     for i in to_do_list:
