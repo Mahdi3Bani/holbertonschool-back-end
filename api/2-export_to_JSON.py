@@ -11,12 +11,10 @@ if __name__ == '__main__':
     to_do_list = requests.get(
         "https://jsonplaceholder.typicode.com/todos",
         params=payload).json()
-
-    f = open(str(eval(identity)) + ".csv", "x")
-
+    jsonn = {}
     for task in to_do_list:
-        csv = '"' + str(user.get("id")) + '","' + str(
-            user.get("username")) + '","' + str(
-                task.get("completed")) + '","' + str(
-                    task.get("title")) + '"\n'
-        f.write(csv)
+        jsonn = jsonn + {user.get("id"): [{"task": task.get("title"),
+                                         "completed": task.get("completed"),
+                                         "username": user.get("username")}]}
+    with open(identity + ".json", 'w') as f:
+        jsonn.dump(jsonn,f)
