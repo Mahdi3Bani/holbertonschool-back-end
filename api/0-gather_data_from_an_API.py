@@ -12,11 +12,11 @@ if __name__ == '__main__':
         "https://jsonplaceholder.typicode.com/todos",
         params=payload).json()
 
-    l = []
-    for i in to_do_list:
-        if i.get['l']:
-            l.append(i.get("title"))
-    print("Employee {} is done with tasks({}/{}):".format(user.get('name'),
-          len(l), len(to_do_list)))
-    for i in l:
-        print("\t {}".format(i))
+    completed = []
+    for task in to_do_list:
+        if task.get("completed") is True:
+            completed.append(task.get("title"))
+    print("Employee {} is done with tasks({}/{}):".format(
+        user.get("name"), len(completed), len(to_do_list)))
+    for complete in completed:
+        print("\t {}".format(complete))
