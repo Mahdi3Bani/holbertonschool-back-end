@@ -15,7 +15,7 @@ if __name__ == '__main__':
     nameFile = str(eval(sys.argv[1])) + ".csv"
 
     f = open(nameFile, "x")
-    for task in todos:
+    for task in to_do_list:
         s = ('"' + str(user.get("id")) + '","' + str(
             user.get("username")) + '","' +
             str(task.get("completed")) + '","' +
