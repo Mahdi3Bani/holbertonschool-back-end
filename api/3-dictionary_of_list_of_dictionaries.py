@@ -3,23 +3,24 @@
 import json
 import requests
 import sys
-if __name__ == '__main__':
-    identity = sys.argv[1]
-    payload = {"userId": identity}
-    user = requests.get(
-        "https://jsonplaceholder.typicode.com/users").json()
 
-    dic = {}
 
-    for i in user:
-        ident = user.get('id')
-        to_do_list = requests.get(
-            "https://jsonplaceholder.typicode.com/todos",
-            params=payload).json()
-        for task in to_do_list:
-            dic.update({user.get("id"): [{"task": task.get("task"),
-                                          "completed": task.get("completed"),
-                                          "username": user.get("username")}]})
+if __name__ == "__main__":
+    api_url = "https://jsonplaceholder.typicode.com/"
 
-    with open("todo_all_employees.json", "w") as f:
-        json.dump(dic, f)
+    users = requests.get(api_url + "users").json()
+
+    dicti = {}
+    for user in users:
+        user_id = user.get("id")
+        todos = requests.get(
+            api_url + "todos", params={"userId": user_id}).json()
+
+        dicti[user.get("id")] = [{"task": task.get("title"),
+                                  "completed": task.get("completed"),
+                                  "username": user.get(
+            "username")} for task in todos]
+
+    file_json = "todo_all_employees.json"
+    with open(file_json, "w") as f:
+        json.dump(dicti, f)
