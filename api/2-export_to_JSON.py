@@ -2,7 +2,6 @@
 ''''return something'''
 import requests
 import sys
-import json
 if __name__ == '__main__':
     identity = sys.argv[1]
     payload = {"userId": identity}
@@ -14,8 +13,8 @@ if __name__ == '__main__':
         params=payload).json()
     jsonn = {}
     for task in to_do_list:
-        jsonn = jsonn.update({user.get("id"): [{"task": task.get("title"),
-                                         "completed": task.get("completed"),
-                                         "username": user.get("username")}]})
+        jsonn.update({user.get("id"): [{"task": task.get("title"),
+                                        "completed": task.get("completed"),
+                                        "username": user.get("username")}]})
     with open(identity + ".json", 'w') as f:
-        jsonn.dump(jsonn,f)
+        jsonn.dump(jsonn, f)
