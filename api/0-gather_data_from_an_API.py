@@ -16,4 +16,4 @@ if __name__ == '__main__':
             l.append(i.get('title'))
     print("Employee {} is done with tasks({}/{}):".format(user.get('name'), len(l),len(to_do_list)))
     for i in l:
-        print("\t {}".format(l))
+        print("\t {}".format(i))
