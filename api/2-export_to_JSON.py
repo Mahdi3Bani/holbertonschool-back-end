@@ -11,11 +11,10 @@ if __name__ == '__main__':
     to_do_list = requests.get(
         "https://jsonplaceholder.typicode.com/todos",
         params=payload).json()
-    jsonn = {}
-    for task in to_do_list:
 
-        jsonn[user.get("id")] = [{"task": task.get("title"),
-                                        "completed": task.get("completed"),
-                                        "username": user.get("username")}]
+    jsonn = {user.get("id"): [{"task": task.get("title"),
+                               "completed": task.get("completed"),
+                               "username": user.get("username")}
+                              for task in to_do_list]}
     with open(identity + ".json", 'w') as f:
         jsonn.dump(jsonn, f)
