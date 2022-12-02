@@ -6,15 +6,15 @@ if __name__ == '__main__':
     identity = sys.argv[1]
     payload = {"userId": identity}
     user = requests.get(
-        "https://jsonplaceholder.typicode.com/user/{}".format(identity)).json()
+        "https://jsonplaceholder.typicode.com/users/{}".format(identity)).json()
     to_do_list = requests.get(
-        "https://jsonplaceholder.typicode.com/user/todos",
+        "https://jsonplaceholder.typicode.com/todos",
         params=payload).json()
 
     l = []
     for i in to_do_list:
-        if i.get['l'] is True:
-            l.append(i.get('title'))
+        if i.get['l']:
+            l.append(i.get("title"))
     print("Employee {} is done with tasks({}/{}):".format(user.get('name'),
           len(l), len(to_do_list)))
     for i in l:
