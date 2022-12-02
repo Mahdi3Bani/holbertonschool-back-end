@@ -14,7 +14,7 @@ if __name__ == '__main__':
         params=payload).json()
     jsonn = {}
     for task in to_do_list:
-        jsonn.update({user.get("id"): [{"task": task.get("title"),
+        jsonn.update({user.get("id"): [{"task": task.get("task"),
                                         "completed": task.get("completed"),
                                         "username": user.get("username")}]})
     with open(identity + ".json", 'w') as f:
